@@ -8,7 +8,7 @@ services:
       - "27017:27017"
     image: mongo:3.4
     volumes:
-      - "openhim-mongo-data:/data/db"
+      - "ihe-openhim-mongo-data:/data/db"
     networks:
       - lan
 
@@ -16,8 +16,8 @@ services:
     container_name: ihe-openhim-core
     image: jembi/openhim-core:v7.1.0
     environment:
-      - mongo_url=mongodb://mongo/openhim
-      - mongo_atnaUrl=mongodb://mongo/openhim
+      - mongo_url=mongodb://openhim-mongo/openhim
+      - mongo_atnaUrl=mongodb://openhim-mongo/openhim
     ports:
       - "8088:8080"
       - "5000:5000"
@@ -28,7 +28,6 @@ services:
       - "7788:7788"
     depends_on:
       - openhim-mongo
-      - hapi_server
     networks:
       - lan
   openhim-console:
@@ -43,8 +42,8 @@ services:
       - lan
 
 volumes:
-  openhim-mongo-data:
-    name: mongo_data_vol
+  ihe-openhim-mongo-data:
+    name: ihe-openhim-mongo-data
     driver: local
 
 

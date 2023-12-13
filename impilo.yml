@@ -51,9 +51,7 @@ services:
     command: mysqld --log-bin --server-id=184054 --log-bin=b1028c835df2-bin --lower_case_table_names=1 --skip-ssl --character_set_server=utf8 --explicit_defaults_for_timestamp --max_allowed_packet=30000000
     networks:
         - lan
-  ###
-  # impilo
-  ###
+ 
   impilo-server:
     image: mohcc/mrs:${VERSION}
     container_name: ihe-impilo-server

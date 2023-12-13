@@ -13,7 +13,7 @@ services:
       ports:
           - '5433:5432'
       volumes:
-          - hapi_db_vol:/var/lib/postgresql/data
+          - ihe-hapi_db_vol:/var/lib/postgresql/data
       networks:
           - lan
 
@@ -25,7 +25,7 @@ services:
       volumes:
           - ./hapi-config:/custom/config/hapi
       environment:
-          SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/hapi-application.yaml'
+          SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/hapi-application.yml'
       networks:
           - lan
       depends_on:
@@ -44,6 +44,6 @@ networks:
     name: kafka_public
 
 volumes:
-    hapi_db_vol:
-        name: hapi_db_vol
+    ihe-hapi_db_vol:
+        name: ihe-hapi_db_vol
         driver: local
