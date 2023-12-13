@@ -1,0 +1,56 @@
+version: "3.8"
+
+
+services:
+  mrs_debezium:
+    image: mohcc/mrs-debezium:2.0.4
+    container_name: ihe_mrs_debezium
+    restart: always
+    environment:
+      - DATABASE_HOSTNAME=mysql
+      - DATABASE_PORT=3306
+      - DATABASE_USER=debezium
+      - DATABASE_PASSWORD=pass123
+      - DATABASE_SERVERNAME=ZW000B04
+      - DATABASE_HISTORY_FILENAME=/tmp/history-file-1.dat
+      - OFFSET_STORAGE_FILENAME=/tmp/offset.dat
+      - IMPILO_FHIR_URL=http://impilo-emr:8080/fhir/
+      - MPI_FHIR_URL=https://openhimcore.zimhie.uwdigi.org/CR/fhir/
+      - MPI_FHIR_USERNAME=testehr
+      - MPI_FHIR_PASSWORD=test1234
+      - MPI_FHIR_ENABLED=false
+      - SHR_FHIR_URL=https://openhimcore.zimhie.uwdigi.org/CR/fhir/
+      - SHR_FHIR_USERNAME=testehr
+      - SHR_FHIR_PASSWORD=test1234
+      - SHR_FHIR_ENABLED=true
+      - KAFKA_BROKERS=kafka-01:9092
+      - KAFKA_ENABLED=false
+    networks:
+      - lan
+      - opencr
+      - hapi-fhir
+      - public
+      - kafka_public
+    depends_on:
+      - impilo-server
+      - impilo-mysql
+      - openhim-core
+
+networks:
+  lan:
+    name: impilo
+  opencr:
+    name: opencr
+  hapi-fhir:
+    name: hapi-fhir_public
+  public:
+    name: openhim_public
+  kafka_public:
+    name: kafka_public
+  
+
+
+    
+
+
+    

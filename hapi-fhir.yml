@@ -1,0 +1,49 @@
+version: "3.8"
+
+
+services:
+
+  hapi_postgres:
+      image: postgres:14.1-alpine
+      container_name: ihe_hapi_postgres
+      environment:
+          - POSTGRES_USER=admin
+          - POSTGRES_PASSWORD=admin
+          - POSTGRES_DB=fhirdb
+      ports:
+          - '5433:5432'
+      volumes:
+          - hapi_db_vol:/var/lib/postgresql/data
+      networks:
+          - lan
+
+  hapi_server:
+      image: "hapiproject/hapi:v6.6.0"
+      container_name: ihe_hapi_server
+      ports:
+          - "8090:8080"
+      volumes:
+          - ./hapi-config:/custom/config/hapi
+      environment:
+          SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/hapi-application.yaml'
+      networks:
+          - lan
+      depends_on:
+          - hapi_postgres
+
+networks:
+  lan:
+    name: impilo
+  opencr:
+    name: opencr
+  hapi-fhir:
+    name: hapi-fhir_public
+  public:
+    name: openhim_public
+  kafka_public:
+    name: kafka_public
+
+volumes:
+    hapi_db_vol:
+        name: hapi_db_vol
+        driver: local

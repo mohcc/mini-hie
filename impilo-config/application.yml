@@ -1,0 +1,145 @@
+configserver:
+    name: Docker Consul Service
+    status: Connected to Consul Server for ${application.siteId}
+
+jhipster:
+    security:
+        authentication:
+            jwt:
+                secret: be99f31b-176a-4ee4-8921-55ef00a6eb9e
+
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: mrs@localhost
+        base-url: http://my-server-url-to-change # Modify according to your server's URL
+
+# ===================================================================
+# Spring
+# ===================================================================
+
+spring:
+    rabbitmq:
+        host: amqp
+        port: 5672
+        username: guest
+        password: guest
+
+    datasource:
+        url: jdbc:mysql://mysql:3306/mrs?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password:
+
+    jpa:
+        hibernate:
+            ddl-auto: none
+
+    cloud:
+        config:
+            override-system-properties: false
+
+    mail:
+        host: mail
+        port: 25
+        username:
+        password:
+
+
+    server:
+        error:
+            include-exception: false
+# ===================================================================
+# Axon
+# ===================================================================
+
+axon:
+    amqp:
+        exchange: amq.fanout
+
+    eventhandling:
+        processors:
+            view:
+                mode: subscribing # subscribing
+            report:
+                mode: subscribing # subscribing
+
+        # ===================================================================
+        # Graphql
+        # ===================================================================
+
+graphql:
+    servlet:
+        mapping: /api/graphql
+        enabled: true
+        corsEnabled: true
+    subscriptions:
+        websocket:
+            path: /subscriptions
+
+graphiql:
+    mapping: /graphiql
+    endpoint: ${graphql.servlet.mapping}
+    enabled: false
+    pageTitle: Mrs Query Interface
+    
+db-scheduler:
+    enabled: true
+    initial-schedule: 0 0 9 1 * ?
+    new-schedule: 0 0 9 2 * ?
+    immediate-execution-enabled: true
+
+      # ===================================================================
+      # Application
+      # ===================================================================
+
+application:
+    dhis2:
+        url: http://apps.mohcc.gov.zw/dhis
+        username: admin
+        password: district
+
+    health-service-integration:
+        url: https://apps.mohcc.gov.zw:8080
+        username: mrs
+        password: 2bd93683-f6f7-43e8-bee8-e4a7d2d48876
+
+        services:
+            client: exchange
+            exchange: exchange
+            facility: resource
+            terminology: resource
+            provider: resource
+
+        connection:
+            enabled: false
+            timeout: 1000
+            read: 2000
+
+        amqp:
+            host: 196.27.127.61
+            port: 5672
+            username: mrs
+            password: 84caa7cd-9cc8-43e7-a4fa-1678d2fb2650
+
+    lims-integration:
+        connection:
+            enabled: true
+        lab-requests:
+            maxRetries: 120
+            retryInterval: 3600000 #try hourly for 120hours
+
+    deduplication-app-integration:
+        url: http://deduplication:3000/search
+        connection:
+            enabled: false
+            timeout: 5000
+            read: 18000
+    scheduled-jobs:
+        enabled: false
+        art-appointments-update:
+            cron-expression: 0 0,5,10,15,20,25,30,35,40,45,50,55 * * * *
+    shared-health-record:
+        enabled: false
+        url: http://localhost:8090/fhir/
+        username: admin
+        password: admin
+        authenticated: false
+        inner-url: http://localhost:8080/fhir/

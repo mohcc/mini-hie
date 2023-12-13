@@ -1,0 +1,61 @@
+version: "3.8"
+
+
+services:
+  openhim-mongo:
+    container_name: ihe-openhim-mongo
+    ports:
+      - "27017:27017"
+    image: mongo:3.4
+    volumes:
+      - "openhim-mongo-data:/data/db"
+    networks:
+      - lan
+
+  openhim-core:
+    container_name: ihe-openhim-core
+    image: jembi/openhim-core:v7.1.0
+    environment:
+      - mongo_url=mongodb://mongo/openhim
+      - mongo_atnaUrl=mongodb://mongo/openhim
+    ports:
+      - "8088:8080"
+      - "5000:5000"
+      - "5001:5001"
+      - "5050:5050"
+      - "5051:5051"
+      - "5052:5052"
+      - "7788:7788"
+    depends_on:
+      - openhim-mongo
+      - hapi_server
+    networks:
+      - lan
+  openhim-console:
+    container_name: ihe-openhim-console
+    image: jembi/openhim-console:1.14.4
+    restart: unless-stopped
+    ports:
+      - "9000:80"
+    volumes:
+      - ./openhim-config/console-default.json:/usr/share/nginx/html/config/default.json
+    networks:
+      - lan
+
+volumes:
+  openhim-mongo-data:
+    name: mongo_data_vol
+    driver: local
+
+
+networks:
+  lan:
+    name: impilo
+  opencr:
+    name: opencr
+  hapi-fhir:
+    name: hapi-fhir_public
+  public:
+    name: openhim_public
+  kafka_public:
+    name: kafka_public
