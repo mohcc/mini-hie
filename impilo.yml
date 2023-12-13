@@ -30,7 +30,7 @@ services:
       - ./impilo-config:/config
     environment:
       - INIT_SLEEP_SECONDS=5
-      - CONSUL_URL=consul
+      - CONSUL_URL=impilo-consul
       - CONSUL_PORT=8500
     networks:
       - lan
@@ -62,7 +62,7 @@ services:
       - ${SERVER_PORT}:8080
     environment:
       - SPRING_PROFILES_ACTIVE=$PROFILE
-      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_CLOUD_CONSUL_HOST=impilo-consul
       - SPRING_CLOUD_CONSUL_PORT=8500
       - APPLICATION_SITEID=${SITE_ID}
       - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
@@ -72,14 +72,14 @@ services:
       - impilo-mysql
       - impilo-amqp
 
-  deduplication:
+  impilo-deduplication:
     image: tinashebutsa/deduplication:1.5
     container_name: ihe-impilo-deduplication
     environment:
       - MYSQL_USER=root
-      - MYSQL_ROOT_HOST=mysql
+      - MYSQL_ROOT_HOST=impilo-mysql
       - MYSQL_PASSWORD=
-      - amqpserver=amqp
+      - amqpserver=impilo-amqp
       - PYTHONUNBUFFERED=1
     ports:
       - 3000:3000

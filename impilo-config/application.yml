@@ -18,13 +18,13 @@ jhipster:
 
 spring:
     rabbitmq:
-        host: amqp
+        host: impilo-amqp
         port: 5672
         username: guest
         password: guest
 
     datasource:
-        url: jdbc:mysql://mysql:3306/mrs?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://impilo-mysql:3306/mrs?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password:
 
@@ -127,7 +127,7 @@ application:
             retryInterval: 3600000 #try hourly for 120hours
 
     deduplication-app-integration:
-        url: http://deduplication:3000/search
+        url: http://impilo-deduplication:3000/search
         connection:
             enabled: false
             timeout: 5000
