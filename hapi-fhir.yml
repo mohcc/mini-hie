@@ -3,7 +3,7 @@ version: "3.8"
 
 services:
 
-  hapi_postgres:
+  hapi-postgres:
       image: postgres:14.1-alpine
       container_name: ihe_hapi_postgres
       environment:
@@ -17,7 +17,7 @@ services:
       networks:
           - lan
 
-  hapi_server:
+  hapi-server:
       image: "hapiproject/hapi:v6.6.0"
       container_name: ihe_hapi_server
       ports:
@@ -29,7 +29,7 @@ services:
       networks:
           - lan
       depends_on:
-          - hapi_postgres
+          - hapi-postgres
 
 networks:
   lan:
