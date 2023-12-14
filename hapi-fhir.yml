@@ -20,8 +20,6 @@ services:
   hapi-server:
       image: "hapiproject/hapi:v6.6.0"
       container_name: ihe_hapi_server
-      ports:
-          - "8090:8080"
       volumes:
           - ./hapi-config:/custom/config/hapi
       environment:
