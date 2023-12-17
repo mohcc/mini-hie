@@ -10,7 +10,7 @@ services:
     volumes:
       - "ihe-openhim-mongo-data:/data/db"
     networks:
-      - lan
+      - mini-hie
 
   openhim-core:
     container_name: ihe-openhim-core
@@ -29,7 +29,7 @@ services:
     depends_on:
       - openhim-mongo
     networks:
-      - lan
+      - mini-hie
   openhim-console:
     container_name: ihe-openhim-console
     image: jembi/openhim-console:1.14.4
@@ -39,7 +39,7 @@ services:
     volumes:
       - ./openhim-config/console-default.json:/usr/share/nginx/html/config/default.json
     networks:
-      - lan
+      - mini-hie
 
 volumes:
   ihe-openhim-mongo-data:
@@ -48,13 +48,5 @@ volumes:
 
 
 networks:
-  lan:
-    name: impilo
-  opencr:
-    name: opencr
-  hapi-fhir:
-    name: hapi-fhir_public
-  public:
-    name: openhim_public
-  kafka_public:
-    name: kafka_public
+  mini-hie:
+    name: mini-hie

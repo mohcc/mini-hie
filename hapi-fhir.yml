@@ -15,7 +15,7 @@ services:
       volumes:
           - ihe-hapi_db_vol:/var/lib/postgresql/data
       networks:
-          - lan
+          - mini-hie
 
   hapi-server:
       image: "hapiproject/hapi:v6.6.0"
@@ -25,21 +25,13 @@ services:
       environment:
           SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/hapi-application.yml'
       networks:
-          - lan
+          - mini-hie
       depends_on:
           - hapi-postgres
 
 networks:
-  lan:
-    name: impilo
-  opencr:
-    name: opencr
-  hapi-fhir:
-    name: hapi-fhir_public
-  public:
-    name: openhim_public
-  kafka_public:
-    name: kafka_public
+  mini-hie:
+    name: mini-hie
 
 volumes:
     ihe-hapi_db_vol:

@@ -9,7 +9,7 @@ services:
     ports:
       - '9094:9094'
     networks:
-          - lan
+          - mini-hie
     environment:
       - KAFKA_ENABLE_KRAFT=yes
       - KAFKA_CFG_BROKER_ID=1
@@ -23,13 +23,5 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
 
 networks:
-  lan:
-    name: impilo
-  opencr:
-    name: opencr
-  hapi-fhir:
-    name: hapi-fhir_public
-  public:
-    name: openhim_public
-  kafka_public:
-    name: kafka_public
+  mini-hie:
+    name: mini-hie

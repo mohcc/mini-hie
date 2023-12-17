@@ -26,24 +26,11 @@ services:
       - KAFKA_BROKERS=kafka-01:9092
       - KAFKA_ENABLED=false
     networks:
-      - lan
-      - opencr
-      - hapi-fhir
-      - public
-      - kafka_public
+      - mini-hie
 
 networks:
-  lan:
-    name: impilo
-  opencr:
-    name: opencr
-  hapi-fhir:
-    name: hapi-fhir_public
-  public:
-    name: openhim_public
-  kafka_public:
-    name: kafka_public
-  
+  mini-hie:
+    name: mini-hie
 
 
     
