@@ -6,6 +6,7 @@ services:
   hapi-postgres:
       image: postgres:14.1-alpine
       container_name: ihe_hapi_postgres
+      restart: unless-stopped
       environment:
           - POSTGRES_USER=admin
           - POSTGRES_PASSWORD=admin
@@ -20,6 +21,7 @@ services:
   hapi-server:
       image: "hapiproject/hapi:v6.6.0"
       container_name: ihe_hapi_server
+      restart: unless-stopped
       volumes:
           - ./hapi-config:/custom/config/hapi
       environment:

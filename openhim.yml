@@ -4,6 +4,7 @@ version: "3.8"
 services:
   openhim-mongo:
     container_name: ihe-openhim-mongo
+    restart: unless-stopped
     ports:
       - "27017:27017"
     image: mongo:3.4
@@ -15,6 +16,7 @@ services:
   openhim-core:
     container_name: ihe-openhim-core
     image: jembi/openhim-core:v7.1.0
+    restart: unless-stopped
     environment:
       - mongo_url=mongodb://openhim-mongo/openhim
       - mongo_atnaUrl=mongodb://openhim-mongo/openhim

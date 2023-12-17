@@ -6,7 +6,7 @@ services:
   impilo-amqp:
     image: rabbitmq:management-alpine
     container_name: ihe-impilo-amqp
-    restart: always
+    restart: unless-stopped
     volumes:
       - ../data/amqp:/var/lib/rabbitmq/mnesia
       - /etc/localtime:/etc/localtime:ro
@@ -17,7 +17,7 @@ services:
   impilo-consul:
     image: consul:0.9.3
     container_name: ihe-impilo-consul
-    restart: always
+    restart: unless-stopped
     command: consul agent -dev -ui -client 0.0.0.0
     networks:
       - mini-hie
@@ -25,7 +25,7 @@ services:
   impilo-config:
     image: jhipster/consul-config-loader:v0.2.2
     container_name: ihe-impilo-config
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./impilo-config:/config
     environment:
@@ -38,7 +38,7 @@ services:
   impilo-mysql:
     image: mysql:5.7.20
     container_name: ihe-impilo-mysql
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./data/mysql/:/var/lib/mysql
       - ./data/backup:/opt
@@ -55,7 +55,7 @@ services:
   impilo-server:
     image: mohcc/mrs:${VERSION}
     container_name: ihe-impilo-server
-    restart: always
+    restart: unless-stopped
     ports:
       - ${SERVER_PORT}:8080
     environment:
@@ -83,7 +83,7 @@ services:
       - 3000:3000
     networks:
       - mini-hie
-    restart: always
+    restart: unless-stopped
     depends_on:
       - impilo-mysql
       - impilo-amqp
