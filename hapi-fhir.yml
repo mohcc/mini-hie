@@ -17,7 +17,7 @@ services:
           - cloudbuild
 
   hapi-server:
-      image: "hapiproject/hapi:v6.6.0"
+      image: "hapiproject/hapi:v6.1.0"
       container_name: ihe_hapi_server
       restart: unless-stopped
       volumes:
