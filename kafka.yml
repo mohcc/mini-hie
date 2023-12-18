@@ -10,7 +10,7 @@ services:
     ports:
       - '9094:9094'
     networks:
-          - mini-hie
+          - cloudbuild
     environment:
       - KAFKA_ENABLE_KRAFT=yes
       - KAFKA_CFG_BROKER_ID=1
@@ -24,5 +24,5 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
 
 networks:
-  mini-hie:
-    name: mini-hie
+  cloudbuild:
+    name: cloudbuild

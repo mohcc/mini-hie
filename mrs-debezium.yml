@@ -26,11 +26,11 @@ services:
       - KAFKA_BROKERS=kafka-01:9092
       - KAFKA_ENABLED=false
     networks:
-      - mini-hie
+      - cloudbuild
 
 networks:
-  mini-hie:
-    name: mini-hie
+  cloudbuild:
+    name: cloudbuild
 
 
     

@@ -16,7 +16,7 @@ services:
       volumes:
           - ihe-hapi_db_vol:/var/lib/postgresql/data
       networks:
-          - mini-hie
+          - cloudbuild
 
   hapi-server:
       image: "hapiproject/hapi:v6.6.0"
@@ -27,13 +27,13 @@ services:
       environment:
           SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/hapi-application.yml'
       networks:
-          - mini-hie
+          - cloudbuild
       depends_on:
           - hapi-postgres
 
 networks:
-  mini-hie:
-    name: mini-hie
+  cloudbuild:
+    name: cloudbuild
 
 volumes:
     ihe-hapi_db_vol:
