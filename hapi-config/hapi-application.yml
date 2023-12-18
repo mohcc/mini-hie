@@ -15,7 +15,7 @@ spring:
     check-location: false
     baselineOnMigrate: true
   datasource:
-    url: 'jdbc:postgresql://hapi-postgres:5432/fhirdb'
+    url: 'jdbc:postgresql://hapi-fhir-db:5432/hapi'
     username: admin
     password: admin
     driverClassName: org.postgresql.Driver
