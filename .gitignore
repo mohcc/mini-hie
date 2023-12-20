@@ -38,3 +38,9 @@ data/
 
 /**/libraries
 /**/README.html
+
+
+##############################
+## Data-warehouse files.
+##############################
+dwh/**
