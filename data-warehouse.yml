@@ -4,6 +4,7 @@ services:
   pipeline-controller:
     image: us-docker.pkg.dev/cloud-build-fhir/fhir-analytics/main:latest
     container_name: ihe-pipeline-controller
+    restart: unless-stopped
     volumes:
       - ${PIPELINE_CONFIG}:/app/config:ro
       - ${DWH_ROOT}:/dwh
@@ -21,6 +22,7 @@ services:
   spark:
     image: docker.io/bitnami/spark:3.3
     container_name: ihe-spark-thriftserver
+    restart: unless-stopped
     command:
       - sbin/start-thriftserver.sh
       - --driver-memory
