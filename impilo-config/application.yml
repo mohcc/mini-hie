@@ -137,9 +137,9 @@ application:
         art-appointments-update:
             cron-expression: 0 0,5,10,15,20,25,30,35,40,45,50,55 * * * *
     shared-health-record:
-        enabled: false
-        url: http://localhost:8090/fhir/
-        username: admin
-        password: admin
+        enabled: true
+        url: http://openhim-core:5001/SHR/fhir/
+        username: test
+        password: test1234
         authenticated: false
-        inner-url: http://localhost:8080/fhir/
+        inner-url: http://hapi-server:8080/fhir/
