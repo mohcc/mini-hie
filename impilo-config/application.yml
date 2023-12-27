@@ -141,5 +141,5 @@ application:
         url: http://openhim-core:5001/SHR/fhir/
         username: test
         password: test1234
-        authenticated: false
+        authenticated: true
         inner-url: http://hapi-server:8080/fhir/
