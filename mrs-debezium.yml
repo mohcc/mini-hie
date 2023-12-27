@@ -7,14 +7,14 @@ services:
     container_name: ihe_mrs_debezium
     restart: unless-stopped
     environment:
-      - DATABASE_HOSTNAME=impilo-mysql
+      - DATABASE_HOSTNAME=mysql
       - DATABASE_PORT=3306
       - DATABASE_USER=debezium
       - DATABASE_PASSWORD=pass123
       - DATABASE_SERVERNAME=ZW000B04
       - DATABASE_HISTORY_FILENAME=/tmp/history-file-1.dat
       - OFFSET_STORAGE_FILENAME=/tmp/offset.dat
-      - IMPILO_FHIR_URL=http://impilo-server:8080/fhir/
+      - IMPILO_FHIR_URL=http://server:8080/fhir/
       - MPI_FHIR_URL=http://openhim-core:5001/CR/fhir/
       - MPI_FHIR_USERNAME=test
       - MPI_FHIR_PASSWORD=test1234
