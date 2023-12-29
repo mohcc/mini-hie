@@ -1,4 +1,4 @@
-version: "3.8"
+version: "2.4"
 
 
 services:
@@ -67,6 +67,10 @@ services:
     depends_on:
       - mysql
       - amqp
+    logging: 
+       options:
+         max-size: "10m"
+         max-file: "5"    
 
   deduplication:
     image: tinashebutsa/deduplication:1.5
