@@ -11,6 +11,8 @@ services:
           - POSTGRES_USER=admin
           - POSTGRES_PASSWORD=admin
           - POSTGRES_DB=hapi
+      ports:
+          - '5434:5432'
       volumes:
           - ihe-hapi_db_vol:/var/lib/postgresql/data
       networks:
@@ -26,6 +28,8 @@ services:
           SPRING_CONFIG_LOCATION: 'file:///custom/config/hapi/hapi-application.yml'
       networks:
           - cloudbuild
+      ports:
+      - '8091:8080'  # TODO: To be removed.
       depends_on:
           - hapi-fhir-db
 
