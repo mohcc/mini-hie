@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ihe-haproxy:
+    image: haproxy:1.7
+    container_name: ihe_haproxy
+    volumes:
+      - ./haproxy-config:/usr/local/etc/haproxy:ro
+    ports:
+      - '9199:9199'
+      - '8888:8888'
+    networks:
+      - cloudbuild
+
+networks:
+  cloudbuild:
+    name: cloudbuild
