@@ -8,6 +8,7 @@ services:
     ports:
       - '9199:9199'
       - '8888:8888'
+      - '9198:9198'
     networks:
       - cloudbuild
 

@@ -32,6 +32,7 @@ services:
       - openhim-mongo
     networks:
       - cloudbuild
+      
   openhim-console:
     container_name: ihe-openhim-console
     image: jembi/openhim-console:1.14.4
