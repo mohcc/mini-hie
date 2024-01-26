@@ -3,6 +3,7 @@ services :
   ihe-nginx:
     image: nginx:latest
     container_name: ihe_nginx_container
+    restart: unless-stopped
     ports:
       - 9898:9898
     volumes:

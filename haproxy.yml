@@ -3,6 +3,7 @@ services:
   ihe-haproxy:
     image: haproxy:1.7
     container_name: ihe_haproxy
+    restart: unless-stopped
     volumes:
       - ./haproxy-config:/usr/local/etc/haproxy:ro
     ports:
