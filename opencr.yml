@@ -1,0 +1,83 @@
+version: '3.7'
+services:
+
+  opencr-postgres-1:
+    container_name: opencr-postgres-1
+    image: bitnami/postgresql-repmgr:14
+    environment:
+      POSTGRESQL_PASSWORD: instant101
+      POSTGRESQL_USERNAME: admin
+      POSTGRESQL_DATABASE: hapi
+      REPMGR_NODE_NETWORK_NAME: opencr-postgres-1
+      REPMGR_PASSWORD: instant101
+      REPMGR_RECONNECT_INTERVAL: 3
+      REPMGR_NODE_NAME: opencr-postgres-1
+      REPMGR_PRIMARY_HOST: opencr-postgres-1
+      REPMGR_PARTNER_NODES: opencr-postgres-1
+      POSTGRESQL_POSTGRES_PASSWORD: postgres
+    volumes:
+      - "opencr-postgres-1-data:/bitnami/postgresql"
+    networks:
+      - cloudbuild
+  
+  opencr-hapi-fhir:    
+    container_name: opencr-hapi-fhir
+    image: hapiproject/hapi:v5.1.0
+    networks:
+      - cloudbuild
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx2g
+      - CATALINA_OPTS=-Xmx2g
+    healthcheck:
+      test: /bin/wget --no-verbose --tries=1 --spider http://localhost:8080
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 2m
+
+
+
+  opencr-es:
+    container_name: opencr-es
+    image: intrahealth/elasticsearch:latest
+    restart: unless-stopped
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /usr/share/elasticsearch/data
+    networks:
+      - cloudbuild
+    healthcheck:
+      test: "curl --silent --fail http://localhost:9200/_cluster/health || exit 1"
+
+  opencr:
+    container_name: opencr
+    hostname: opencr
+    image: intrahealth/opencr:latest
+    environment:
+      - NODE_ENV=docker
+      - HAPI_FHIR_URL=http://opencr-hapi-fhir:8080/fhir/metadata
+    volumes:
+      - ./opencr-config/config.json:/src/server/config/config_docker.json
+      - ./opencr-config/mediator.json:/src/server/config/mediator.json
+      - ./opencr-config/decisionRules.json:/src/server/config/decisionRules.json
+      - ./opencr-config/PatientRelationship.json:/src/server/config/PatientRelationship.json
+    networks:
+      - cloudbuild
+    ports:
+      - 3000:3000
+
+volumes:
+  opencr-postgres-1-data:    
+
+
+networks:
+  cloudbuild:
+    name: cloudbuild
