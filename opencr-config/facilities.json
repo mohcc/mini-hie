@@ -1,0 +1,415 @@
+{
+    {
+        "clients": [
+          {
+            "id": "ZW000A00",
+            "displayName": "Diaspora"
+          },
+          {
+            "id": "ZW000A01",
+            "displayName": "Avondale Clinic"
+          },
+          {
+            "id": "ZW000A02",
+            "displayName": "Arcadia Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A05",
+            "displayName": "Belvedere FHS"
+          },
+          {
+            "id": "ZW000A07",
+            "displayName": "Borrowdale Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A08",
+            "displayName": "Braeside FHS"
+          },
+          {
+            "id": "ZW000A09",
+            "displayName": "Budiriro Polyclinic"
+          },
+          {
+            "id": "ZW000A0C",
+            "displayName": "Beatrice Road Infectious Diseases Hospital"
+          },
+          {
+            "id": "ZW000A0D",
+            "displayName": "Wilkins Infectious Diseases Hospital"
+          },
+          {
+            "id": "ZW000A0E",
+            "displayName": "St Annes Hospital"
+          },
+          {
+            "id": "ZW000A0F",
+            "displayName": "Avenues Clinic"
+          },
+          {
+            "id": "ZW000A0G",
+            "displayName": "Mbuya Dorcas Hospital"
+          },
+          {
+            "id": "ZW000A0H",
+            "displayName": "West End Hospital"
+          },
+          {
+            "id": "ZW000A0J",
+            "displayName": "Metropolitan"
+          },
+          {
+            "id": "ZW000A0K",
+            "displayName": "Belvedere Maternity Hospital"
+          },
+          {
+            "id": "ZW000A0L",
+            "displayName": "Suburban Hospital"
+          },
+          {
+            "id": "ZW000A0M",
+            "displayName": "BS Leon Hospital"
+          },
+          {
+            "id": "ZW000A0N",
+            "displayName": "Rock Foundation"
+          },
+          {
+            "id": "ZW000A0P",
+            "displayName": "Queen of Peace"
+          },
+          {
+            "id": "ZW000A0Q",
+            "displayName": "Arcadia Medical Centre"
+          },
+          {
+            "id": "ZW000A0R",
+            "displayName": "Glen Norah Medical Centre"
+          },
+          {
+            "id": "ZW000A0S",
+            "displayName": "Willowvale Medical Centre"
+          },
+          {
+            "id": "ZW000A0T",
+            "displayName": "Mabelreign Medical Centre"
+          },
+          {
+            "id": "ZW000A0V",
+            "displayName": "Baines Avenues Hosp"
+          },
+          {
+            "id": "ZW000A10",
+            "displayName": "Eastlea FHS"
+          },
+          {
+            "id": "ZW000A11",
+            "displayName": "Glen Norah Satellite"
+          },
+          {
+            "id": "ZW000A13",
+            "displayName": "Glen View Polyclinic"
+          },
+          {
+            "id": "ZW000A14",
+            "displayName": "Glen View Satellite"
+          },
+          {
+            "id": "ZW000A15",
+            "displayName": "Greendale FHS"
+          },
+          {
+            "id": "ZW000A17",
+            "displayName": "Hatcliffe Polyclinic"
+          },
+          {
+            "id": "ZW000A18",
+            "displayName": "Highfield Polyclinic"
+          },
+          {
+            "id": "ZW000A19",
+            "displayName": "Kambuzuma Polyclinic"
+          },
+          {
+            "id": "ZW000A20",
+            "displayName": "Kuwadzana Polyclinic"
+          },
+          {
+            "id": "ZW000A21",
+            "displayName": "Mabelreign Satellite"
+          },
+          {
+            "id": "ZW000A23",
+            "displayName": "Mabvuku Polyclinic"
+          },
+          {
+            "id": "ZW000A25",
+            "displayName": "Matapi Clinic"
+          },
+          {
+            "id": "ZW000A26",
+            "displayName": "Mbare Hostels Clinic"
+          },
+          {
+            "id": "ZW000A27",
+            "displayName": "Mbare Polyclinic"
+          },
+          {
+            "id": "ZW000A28",
+            "displayName": "Mt Pleasant Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A29",
+            "displayName": "Mufakose Polyclinic"
+          },
+          {
+            "id": "ZW000A30",
+            "displayName": "Parirenyatwa Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A32",
+            "displayName": "Rugare Clinic"
+          },
+          {
+            "id": "ZW000A33",
+            "displayName": "Rujeko Polyclinic"
+          },
+          {
+            "id": "ZW000A34",
+            "displayName": "Rutsanana PolyClinic"
+          },
+          {
+            "id": "ZW000A35",
+            "displayName": "Southerton Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A37",
+            "displayName": "Sunningdale Satellite"
+          },
+          {
+            "id": "ZW000A38",
+            "displayName": "Tafara FHS"
+          },
+          {
+            "id": "ZW000A39",
+            "displayName": "Warren Park Polyclinic"
+          },
+          {
+            "id": "ZW000A41",
+            "displayName": "Waterfalls Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A42",
+            "displayName": "Western Triangle Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A43",
+            "displayName": "KG Six"
+          },
+          {
+            "id": "ZW000A44",
+            "displayName": "Hatfield Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A45",
+            "displayName": "Malborough Satellite Clinic"
+          },
+          {
+            "id": "ZW000A46",
+            "displayName": "Highlands Primary Care Clinic"
+          },
+          {
+            "id": "ZW000A47",
+            "displayName": "Mabvuku Satelite Clinic"
+          },
+          {
+            "id": "ZW000A48",
+            "displayName": "ZPS Harare Central Hosp"
+          },
+          {
+            "id": "ZW000A49",
+            "displayName": "Rowland Square Clinic"
+          },
+          {
+            "id": "ZW000A50",
+            "displayName": "CIMAS Chinhoyi Street"
+          },
+          {
+            "id": "ZW000A51",
+            "displayName": "Spilhaus - Freshplan"
+          },
+          {
+            "id": "ZW000A52",
+            "displayName": "Highlands FHS"
+          },
+          {
+            "id": "ZW000A53",
+            "displayName": "Hopley Clinic"
+          },
+          {
+            "id": "ZW000A54",
+            "displayName": "ZRP Harare Central"
+          },
+          {
+            "id": "ZW000A55",
+            "displayName": "ZRP Morris Depot"
+          },
+          {
+            "id": "ZW000A56",
+            "displayName": "ZRP Chikurubi"
+          },
+          {
+            "id": "ZW000A57",
+            "displayName": "Caledonia Clinic"
+          },
+          {
+            "id": "ZW000A58",
+            "displayName": "ZPS Chikurubi Staff"
+          },
+          {
+            "id": "ZW000A59",
+            "displayName": "ZPS Chikurubi Maximum"
+          },
+          {
+            "id": "ZW000A60",
+            "displayName": "ZPS Chikurubi Female"
+          },
+          {
+            "id": "ZW000A61",
+            "displayName": "ZPS Chikurubi Dependants Clinic"
+          },
+          {
+            "id": "ZW000A62",
+            "displayName": "ZPS Chikurubi Farm"
+          },
+          {
+            "id": "ZW000A63",
+            "displayName": "New Start Fourth Street"
+          },
+          {
+            "id": "ZW000A64",
+            "displayName": "ZNFPC"
+          },
+          {
+            "id": "ZW000A65",
+            "displayName": "ZPS Kentucky"
+          },
+          {
+            "id": "ZW000A66",
+            "displayName": "ZPS Harare Remand"
+          },
+          {
+            "id": "ZW000A67",
+            "displayName": "ZPS Harare Central Prison Dependants"
+          },
+          {
+            "id": "ZW000A68",
+            "displayName": "Kuwadzana Satellite Clinic"
+          },
+          {
+            "id": "ZW000A69",
+            "displayName": "Budiriro Satellite Clinic"
+          },
+          {
+            "id": "ZW000A70",
+            "displayName": "ZRP Tomlinson Depot"
+          },
+          {
+            "id": "ZW000A72",
+          "displayName": "ZRP Support"
+          },
+          {
+            "id": "ZW000A73",
+            "displayName": "INNSCOR Wellness"
+          },
+          {
+            "id": "ZW000A74",
+            "displayName": "Harare City Centre VMMC Clinic"
+          },
+          {
+            "id": "ZW000A75",
+            "displayName": "PSI GUC (Wilkins)"
+          },
+          {
+            "id": "ZW000A76",
+            "displayName": "Glen View Maternity (Private)"
+          },
+          {
+            "id": "ZW000A77",
+            "displayName": "Waterfalls Medical Centre"
+          },
+          {
+            "id": "ZW000A78",
+            "displayName": "NCM Cranborne"
+          },
+          {
+            "id": "ZW000A79",
+            "displayName": "Pacific Mabvuku"
+          },
+          {
+            "id": "ZW000A80",
+            "displayName": "UZ Student Clinic"
+          },
+          {
+            "id": "ZW000A81",
+            "displayName": "Starlight Maternity"
+          },
+          {
+            "id": "ZW000A82",
+            "displayName": "Trauma Centre"
+          },
+          {
+            "id": "ZW000A83",
+            "displayName": "Gonda Hospital"
+          },
+          {
+            "id": "ZW000A84",
+            "displayName": "Belvedere Medical Centre"
+          },
+          {
+            "id": "ZW000A85",
+            "displayName": "Marlborough Medical Centre"
+          },
+          {
+            "id": "ZW000A86",
+            "displayName": "ZAPSO"
+          },
+          {
+            "id": "ZW000A87",
+            "displayName": "Delta Beverages - ST Thomas Clinic"
+          },
+          {
+            "id": "ZW000A88",
+            "displayName": "Delta Beverages - Southerton Clinic"
+          },
+          {
+            "id": "ZW000A89",
+            "displayName": "Delta Beverages - Graniteside Clinic"
+          },
+          {
+            "id": "ZW000A90",
+            "displayName": "Hope Community Medical Centre"
+          },
+          {
+            "id": "ZW000A91",
+            "displayName": "NRZ Kenneth Kaunda Ave Clinic"
+          },
+          {
+            "id": "ZW000A92",
+            "displayName": "NRZ Rugare Clinic"
+          },
+          {
+            "id": "ZW000A93",
+            "displayName": "ZRP Highfield Clinic"
+          },
+          {
+            "id": "ZW000A94",
+            "displayName": "OK Zimbabwe Clinic"
+          },
+          {
+            "id": "ZW000A95",
+            "displayName": "ZPS Chikurubi Prison Male Psychiatric Unit"
+          }]
+      
+  }
+  
+  
