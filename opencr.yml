@@ -4,6 +4,7 @@ services:
   opencr-postgres-1:
     container_name: opencr-postgres-1
     image: bitnami/postgresql-repmgr:14
+    restart: unless-stopped
     environment:
       POSTGRESQL_PASSWORD: instant101
       POSTGRESQL_USERNAME: admin
@@ -23,6 +24,7 @@ services:
   opencr-hapi-fhir:    
     container_name: opencr-hapi-fhir
     image: hapiproject/hapi:v5.1.0
+    restart: unless-stopped
     networks:
       - cloudbuild
     environment:
@@ -61,6 +63,7 @@ services:
     container_name: opencr
     hostname: opencr
     image: intrahealth/opencr:latest
+    restart: unless-stopped
     environment:
       - NODE_ENV=docker
       - HAPI_FHIR_URL=http://opencr-hapi-fhir:8080/fhir/metadata
