@@ -19,7 +19,9 @@ services:
     image: hapiproject/hapi:v5.1.0
     restart: unless-stopped
     networks:
-      - cloudbuild
+      - cloudbuild    
+    ports:
+      - 8080:8080
     environment:
       - spring.datasource.url=jdbc:postgresql://opencr-postgres:5432/hapi
       - spring.datasource.username=admin
@@ -54,9 +56,9 @@ services:
     ulimits:
       memlock:
         soft: -1
-        hard: -1
+        hard: -1      
     volumes:
-      - /usr/share/elasticsearch/data
+       - data01:/usr/share/opensearch/data
     networks:
       - cloudbuild
     healthcheck:
@@ -85,6 +87,8 @@ services:
 
 volumes:
   opencr-postgres-1-data:    
+  data01:
+    driver: local
 
 
 networks:
