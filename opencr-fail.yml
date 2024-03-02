@@ -1,14 +1,21 @@
 version: '3.7'
 services:
 
-  opencr-postgres:
-    container_name: opencr-postgres
-    image: postgres:14.1-alpine
+  opencr-postgres-1:
+    container_name: opencr-postgres-1
+    image: bitnami/postgresql-repmgr:14
     restart: unless-stopped
     environment:
-        - POSTGRES_USER=admin
-        - POSTGRES_PASSWORD=admin
-        - POSTGRES_DB=hapi
+      POSTGRESQL_PASSWORD: instant101
+      POSTGRESQL_USERNAME: admin
+      POSTGRESQL_DATABASE: hapi
+      REPMGR_NODE_NETWORK_NAME: opencr-postgres-1
+      REPMGR_PASSWORD: instant101
+      REPMGR_RECONNECT_INTERVAL: 3
+      REPMGR_NODE_NAME: opencr-postgres-1
+      REPMGR_PRIMARY_HOST: opencr-postgres-1
+      REPMGR_PARTNER_NODES: opencr-postgres-1
+      POSTGRESQL_POSTGRES_PASSWORD: postgres
     volumes:
       - "opencr-postgres-1-data:/bitnami/postgresql"
     networks:
@@ -21,16 +28,6 @@ services:
     networks:
       - cloudbuild
     environment:
-      - spring.datasource.url=jdbc:postgresql://opencr-postgres:5432/hapi
-      - spring.datasource.username=admin
-      - spring.datasource.password=admin
-      - spring.datasource.driverClassName=org.postgresql.Driver
-      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
-      - hapi.fhir.allow_external_references=true
-      - hapi.fhir.auto_create_placeholder_reference_targets=true
-      - hapi.fhir.bulk_export_enabled=true
-      - hapi.fhir.client_id_strategy=ANY
-      - hapi.fhir.enable_repository_validating_interceptor=true
       - JAVA_TOOL_OPTIONS=-Xmx2g
       - CATALINA_OPTS=-Xmx2g
     healthcheck:
@@ -66,7 +63,7 @@ services:
     container_name: opencr
     hostname: opencr
     image: intrahealth/opencr:latest
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - NODE_ENV=docker
       - HAPI_FHIR_URL=http://opencr-hapi-fhir:8080/fhir/metadata
@@ -74,14 +71,11 @@ services:
       - ./opencr-config/config.json:/src/server/config/config_docker.json
       - ./opencr-config/mediator.json:/src/server/config/mediator.json
       - ./opencr-config/decisionRules.json:/src/server/config/decisionRules.json
-      - ./opencr-config/PatientRelationship.json:/src/resources/Relationships/PatientRelationship.json
+      - ./opencr-config/PatientRelationship.json:/src/server/config/PatientRelationship.json
     networks:
       - cloudbuild
     ports:
       - 3000:3000
-    depends_on:
-      - opencr-hapi-fhir
-      - opencr-es
 
 volumes:
   opencr-postgres-1-data:    
