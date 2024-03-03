@@ -125,7 +125,7 @@
         "status": "enabled",
         "forwardAuthHeader": false,
         "name": "Add/Get Resources",
-        "secured": true,
+        "secured": false,
         "host": "opencr",
         "port": 3000,
         "path": "",
