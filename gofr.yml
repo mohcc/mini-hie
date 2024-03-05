@@ -1,0 +1,69 @@
+version: '3.7'
+services:
+  redis:
+      container_name: redis-gofr
+      image: redis
+      networks:
+        - cloudbuild
+      ports:
+      - "6379:6379"
+      restart: always
+      
+    
+  fhir:
+    container_name: hapi-fhir-gofr
+    image: hapiproject/hapi:v5.5.2
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      - hapi.fhir.partitioning.enabled=true
+      - hapi.fhir.partitioning.allow_references_across_partitions=false
+      - hapi.fhir.partitioning.partitioning_include_in_search_hashes=false
+      - hapi.fhir.enable_index_missing_fields=true
+      - hapi.fhir.auto_create_placeholder_reference_targets=true
+      - hapi.fhir.client_id_strategy=ANY
+      - spring.jpa.properties.hibernate.search.enabled=true
+      - spring.jpa.properties.hibernate.search.backend.type=lucene
+      - spring.jpa.properties.hibernate.search.backend.analysis.configurer=ca.uhn.fhir.jpa.search.HapiLuceneAnalysisConfigurer
+      - spring.jpa.properties.hibernate.search.backend.directory.type=local-filesystem
+      - spring.jpa.properties.hibernate.search.backend.directory.root=target/lucenefiles
+      - spring.jpa.properties.hibernate.search.backend.lucene_version=lucene_current
+    networks:
+      - cloudbuild
+
+  hapi-cli:
+    container_name: hapi-cli-gofr
+    image: intrahealth/hapi-fhir-cli:latest
+    depends_on:
+      - fhir
+    command: /bin/sh -c "/upload-definitions.sh -p 8080 -h fhir"
+    networks:
+      - cloudbuild
+
+  gofr:
+    container_name: gofr
+    image: intrahealth/gofr:7e892dd6
+    environment:
+      - mCSD__server__protocal=http
+      - mCSD__server__host=fhir
+      - mCSD__server__port=8080
+      - mCSD__server__basePath=fhir
+      - REDIS_HOST=redis
+    ports:
+      - '4000:4000'
+
+    networks:
+      - cloudbuild
+    
+networks:
+  cloudbuild:
+    name: cloudbuild
+
+volumes:
+  hapi_db_vol:
+    name: hapi_db_vol
+    driver: local
+
