@@ -8,6 +8,19 @@ services:
       ports:
       - "6379:6379"
       restart: always
+
+  gofr-postgres:
+    container_name: gofr-postgres
+    image: postgres:14.1-alpine
+    restart: unless-stopped
+    environment:
+        - POSTGRES_USER=admin
+        - POSTGRES_PASSWORD=admin
+        - POSTGRES_DB=hapi
+    volumes:
+          - gofr-hapi_db_vol:/var/lib/postgresql/data
+    networks:
+      - cloudbuild
       
     
   fhir:
@@ -19,6 +32,11 @@ services:
     depends_on:
       - redis
     environment:
+      - spring.datasource.url=jdbc:postgresql://gofr-postgres:5432/hapi
+      - spring.datasource.username=admin
+      - spring.datasource.password=admin
+      - spring.datasource.driverClassName=org.postgresql.Driver
+      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
       - hapi.fhir.partitioning.enabled=true
       - hapi.fhir.partitioning.allow_references_across_partitions=false
       - hapi.fhir.partitioning.partitioning_include_in_search_hashes=false
@@ -63,7 +81,7 @@ networks:
     name: cloudbuild
 
 volumes:
-  hapi_db_vol:
-    name: hapi_db_vol
+  gofr-hapi_db_vol:
+    name: gofr-hapi_db_vol
     driver: local
 
