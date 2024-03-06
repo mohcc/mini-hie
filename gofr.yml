@@ -27,7 +27,7 @@ services:
     container_name: hapi-fhir-gofr
     image: hapiproject/hapi:v5.5.2
     ports:
-      - "8080:8080"
+      - "8083:8080"
     restart: always
     depends_on:
       - redis

@@ -1,0 +1,113 @@
+version: '3.9'
+services:
+
+  ihris-fhir:
+    container_name:  ihris-fhir
+    image: hapiproject/hapi:v6.8.0
+    ports:
+      - "8084:8080"
+    environment:
+      profiles.active: r4
+      spring.datasource.url: 'jdbc:postgresql://ihris-postgres:5432/ihris_data'
+      spring.datasource.username: admin
+      spring.datasource.password: admin
+      spring.datasource.driverClassName: org.postgresql.Driver
+      spring.jpa.properties.hibernate.search.enabled: 'true'
+      spring.jpa.properties.hibernate.search.backend.type: lucene
+      spring.jpa.properties.hibernate.search.backend.directory.type: local-filesystem
+      spring.jpa.properties.hibernate.search.backend.directory.root: target/lucenefiles
+      spring.jpa.properties.hibernate.search.backend.lucene_version: lucene_current
+      spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+      hapi.fhir.tester.home.server_address: "http://localhost:8080/fhir"
+      hapi.fhir.enable_index_missing_fields: 'true'
+
+    volumes:
+      - hapi-data:/data/hapi
+    depends_on:
+      - ihris-postgres
+    networks:
+      - cloudbuild
+
+  ihris-postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: ihris_data
+    ports:
+      - '5433:5432'
+    volumes:
+        -  ihris-data:/var/lib/postgresql/data
+    networks:
+      - cloudbuild
+
+  ihris-redis:
+    container_name: ihris-redis
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6380:6379"
+    networks:
+      - cloudbuild
+
+  ihris:
+    container_name: ihris
+    image: ihris/ihris
+    #platform: linux/amd64
+    ports:
+      - "3002:3000"
+    depends_on:
+      - ihris-redis
+    restart: on-failure
+    networks:
+      - cloudbuild
+    environment:
+      IHRIS_FHIR__BASE: http://ihris-fhir:8080/fhir
+      IHRIS_REDIS__URL: redis://ihris-redis
+      IHRIS_ELASTICSEARCH__BASE: http://ihris-es:9200
+      IHRIS_KIBANA__BASE: http://ihris-kibana:5601
+  
+  ihris-es:
+    container_name: ihris-es
+    image: elasticsearch:7.17.6
+    environment:
+      node.name: es01
+      discovery.type: single-node
+      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ihris-es-data:/usr/share/elasticsearch/data
+    ports:
+      - 9201:9200
+    networks:
+      - cloudbuild
+
+
+  ihris-kibana:
+    container_name: ihris-kibana
+    image: kibana:7.17.6
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://ihris-es:9200
+      ELASTICSEARCH_HOSTS: http://ihris-es:9200
+    networks:
+      - cloudbuild
+
+
+volumes:
+  ihris-data:
+  ihris-es-data:
+  hapi-data:
+    # external: true
+
+networks:
+  cloudbuild:
+    name: cloudbuild
+
+
