@@ -8,7 +8,7 @@ services:
       - "8084:8080"
     environment:
       profiles.active: r4
-      spring.datasource.url: 'jdbc:postgresql://ihris-postgres:5432/ihris_data'
+      spring.datasource.url: 'jdbc:postgresql://ihris-postgres:5432/hapi'
       spring.datasource.username: admin
       spring.datasource.password: admin
       spring.datasource.driverClassName: org.postgresql.Driver
@@ -20,9 +20,7 @@ services:
       spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
       hapi.fhir.tester.home.server_address: "http://localhost:8080/fhir"
       hapi.fhir.enable_index_missing_fields: 'true'
-
-    volumes:
-      - hapi-data:/data/hapi
+      
     depends_on:
       - ihris-postgres
     networks:
@@ -34,7 +32,7 @@ services:
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
-      POSTGRES_DB: ihris_data
+      POSTGRES_DB: hapi
     ports:
       - '5433:5432'
     volumes:
@@ -56,7 +54,7 @@ services:
     image: ihris/ihris
     #platform: linux/amd64
     ports:
-      - "3002:3000"
+      - "3008:3000"
     depends_on:
       - ihris-redis
     restart: on-failure
@@ -81,7 +79,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ihris-es-data:/usr/share/elasticsearch/data
+      - hapi-data:/usr/share/elasticsearch/data
     ports:
       - 9201:9200
     networks:
