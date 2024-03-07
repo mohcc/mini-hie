@@ -3,7 +3,7 @@ version: "2.4"
 
 services:
   mrs_debezium:
-    image: mohcc/mrs-debezium:2.0.4
+    image: mohcc/mrs-debezium:2.0.5
     container_name: ihe_mrs_debezium
     restart: unless-stopped
     environment:
@@ -14,15 +14,12 @@ services:
       - DATABASE_SERVERNAME=ZW000B04
       - DATABASE_HISTORY_FILENAME=/tmp/history-file-1.dat
       - OFFSET_STORAGE_FILENAME=/tmp/offset.dat
-      - IMPILO_FHIR_URL=http://server:8080/fhir/
-      - MPI_FHIR_URL=http://openhim-core:5001/CR/fhir/
-      - MPI_FHIR_USERNAME=test
-      - MPI_FHIR_PASSWORD=test1234
-      - MPI_FHIR_ENABLED=false
-      - SHR_FHIR_URL=http://openhim-core:5001/SHR/fhir/
-      - SHR_FHIR_USERNAME=test
-      - SHR_FHIR_PASSWORD=test1234
-      - SHR_FHIR_ENABLED=true
+      - HIE_USERNAME=test
+      - HIE_PASSWORD=test1234
+      - HIE_CR_URL=http://server:8080/fhir/
+      - HIE_CR_ENABLED=false
+      - HIE_SHR_URL=http://openhim-core:5001/SHR/fhir/
+      - HIE_SHR_ENABLED=true
       - KAFKA_BROKERS=kafka-01:9092
       - KAFKA_ENABLED=false
     networks:
