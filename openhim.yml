@@ -9,7 +9,7 @@ services:
       - "27017:27017"
     image: mongo:3.4
     volumes:
-      - "ihe-openhim-mongo-data:/data/db"
+      - "./data/ihe-openhim-mongo-data:/data/db"
     networks:
       - cloudbuild
 
@@ -28,6 +28,8 @@ services:
       - "5051:5051"
       - "5052:5052"
       - "7788:7788"
+    volumes:
+      - ./openhim-config/openhim.json:/app/config/default.json
     depends_on:
       - openhim-mongo
     networks:
@@ -35,19 +37,17 @@ services:
       
   openhim-console:
     container_name: ihe-openhim-console
+    hostname: ihe-openhim-console
     image: jembi/openhim-console:1.14.4
     restart: unless-stopped
     ports:
       - "9000:80"
     volumes:
       - ./openhim-config/console-default.json:/usr/share/nginx/html/config/default.json
+
     networks:
       - cloudbuild
 
-volumes:
-  ihe-openhim-mongo-data:
-    name: ihe-openhim-mongo-data
-    driver: local
 
 
 networks:

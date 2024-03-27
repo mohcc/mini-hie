@@ -10,8 +10,8 @@
   "mediator": {
     "api": {
       "username": "root@openhim.org",
-      "password": "openhim101",
-      "apiURL": "https://openhim-core:8080",
+      "password": ")Pu""gqfj8;6uzP",
+      "apiURL": "http://openhim-core:8080",
       "trustSelfSigned": true,
       "urn": ""
     },
@@ -469,7 +469,7 @@
     }
   },
   "sync": {
-    "lastFHIR2ESSync": "2024-03-06T07:12:21"
+    "lastFHIR2ESSync": "2024-03-27T14:23:42"
   },
   "__comments": {
     "matching.tool": "this tells if the app should use mediator algorithms or elasticsearch algorithms for matching, two options mediator and elasticsearch"
