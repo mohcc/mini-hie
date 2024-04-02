@@ -1,0 +1,8 @@
+127.0.0.1 comms.openhim.zhie.local
+127.0.0.1 core.openhim.zhie.local
+127.0.0.1 gofr.zhie.local
+127.0.0.1 opencr.zhie.local
+127.0.0.1 openhim.zhie.local
+127.0.0.1 haproxy.zhie.local
+127.0.0.1 nginx.zhie.local
+127.0.0.1 spark.zhie.local

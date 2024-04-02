@@ -39,6 +39,8 @@ data/
 /**/libraries
 /**/README.html
 
+.DS_Store
+
 
 ##############################
 ## Data-warehouse files.

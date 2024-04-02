@@ -1,0 +1,15 @@
+version : '3'
+services:
+  elb:
+    image: haproxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./local/conf:/usr/local/etc/haproxy
+      - ./local/certs:/usr/local/etc/haproxy/certs
+    networks:
+      - cloudbuild
+
+networks:
+  cloudbuild:
+    name: cloudbuild

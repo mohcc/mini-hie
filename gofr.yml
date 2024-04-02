@@ -63,10 +63,10 @@ services:
 
   gofr:
     container_name: gofr
-    image: intrahealth/gofr:7e892dd6
+    image: intrahealth/gofr:22d71e4b
     environment:
       - mCSD__server__protocal=http
-      - mCSD__server__host=fhir
+      - mCSD__server__host=hapi-fhir-gofr
       - mCSD__server__port=8080
       - mCSD__server__basePath=fhir
       - REDIS_HOST=redis
