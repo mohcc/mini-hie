@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>hive.server2.authentication</name>
+        <value>LDAP</value>
+    </property>
+    <property>
+        <name>hive.server2.authentication.ldap.url</name>
+        <value>ldap://openldap:1389</value>
+    </property>
+    <property>
+        <name>hive.server2.authentication.ldap.baseDN</name>
+        <value>ou=users,dc=mohcc,dc=gov,dc=zw</value>
+    </property>
+</configuration>

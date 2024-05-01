@@ -41,6 +41,7 @@ services:
       #- ./hive-site_example.xml:/opt/bitnami/spark/conf/hive-site.xml
       # Note to use an external DB, you need to provide its driver jar too:
       #- ./postgresql-42.6.0.jar:/opt/bitnami/spark/jars/postgresql-42.6.0.jar
+      - ${PIPELINE_CONFIG}/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
       - spark_vol_single:/opt/bitnami/spark
     networks:
       - cloudbuild
